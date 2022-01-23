@@ -1,1 +1,35 @@
-{"name":"andxor-smartmon_exporter","origin":"andxor/andxor-smartmon_exporter","version":"1.0","comment":"Andxor smartmon exporter","maintainer":"l.luchini@andxor.it","www":"UNKNOWN","abi":"FreeBSD:*:*","arch":"freebsd:*:*","prefix":"/usr/local","flatsize":7357,"licenselogic":"single","licenses":[""],"desc":"Andxor smartmon exporter","deps":{"node_exporter":{"origin":"sysutils/node_exporter","version":"1.1.0"},"smartmontools":{"origin":"sysutils/smartmontools","version":"7.2_1"}},"categories":["andxor","prometheus"],"files":{"/usr/local/etc/cron.d/smartmon_exporter":"1$1e9054353859e03899f5e7742961c4eda578d422e6e83be3e59a10d1610e5c07","/usr/local/sbin/smartmon_exporter":"1$d6c0f66ce6dd1a8c30fa18ed2b1d28c8eb33e155be7a29d0794a575fe5358eb1"}}
+{
+    "name": "andxor-smartmon_exporter",
+    "origin": "andxor/andxor-smartmon_exporter",
+    "version": "1.0",
+    "comment": "Andxor smartmon exporter",
+    "maintainer": "l.luchini@andxor.it",
+    "www": "https://github.com/andxor/freebsd-exporters",
+    "abi": "FreeBSD:*:*",
+    "arch": "freebsd:*:*",
+    "prefix": "/usr/local",
+    "flatsize": 7357,
+    "licenselogic": "single",
+    "licenses": [
+        ""
+    ],
+    "desc": "Andxor smartmon exporter",
+    "deps": {
+        "node_exporter": {
+            "origin": "sysutils/node_exporter",
+            "version": "1.1.0"
+        },
+        "smartmontools": {
+            "origin": "sysutils/smartmontools",
+            "version": "7.2_1"
+        }
+    },
+    "categories": [
+        "andxor",
+        "prometheus"
+    ],
+    "files": {
+        "/usr/local/etc/cron.d/smartmon_exporter": "1$1e9054353859e03899f5e7742961c4eda578d422e6e83be3e59a10d1610e5c07",
+        "/usr/local/sbin/smartmon_exporter": "1$d6c0f66ce6dd1a8c30fa18ed2b1d28c8eb33e155be7a29d0794a575fe5358eb1"
+    }
+}

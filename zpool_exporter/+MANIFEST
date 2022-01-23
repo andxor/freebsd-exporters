@@ -1,1 +1,31 @@
-{"name":"andxor-zpool_exporter","origin":"andxor/andxor-zpool_exporter","version":"1.0","comment":"Andxor zpool exporter","maintainer":"l.luchini@andxor.it","www":"UNKNOWN","abi":"FreeBSD:*:*","arch":"freebsd:*:*","prefix":"/usr/local","flatsize":572,"licenselogic":"single","licenses":[""],"desc":"Andxor zpool exporter","deps":{"node_exporter":{"origin":"sysutils/node_exporter","version":"1.1.0"}},"categories":["andxor","prometheus"],"files":{"/usr/local/etc/cron.d/zpool_exporter":"1$69125763f7513b7d96717de88c20fa70aaea078baa9be413855121375ac13a44","/usr/local/sbin/zpool_exporter":"1$ea65f60f3692b7a31779777a39273a6ae025261837d5dc5b5bab325b59c4eafe"}}
+{
+    "name": "andxor-zpool_exporter",
+    "origin": "andxor/andxor-zpool_exporter",
+    "version": "1.0",
+    "comment": "Andxor zpool exporter",
+    "maintainer": "l.luchini@andxor.it",
+    "www": "https://github.com/andxor/freebsd-exporters",
+    "abi": "FreeBSD:*:*",
+    "arch": "freebsd:*:*",
+    "prefix": "/usr/local",
+    "flatsize": 572,
+    "licenselogic": "single",
+    "licenses": [
+        ""
+    ],
+    "desc": "Andxor zpool exporter",
+    "deps": {
+        "node_exporter": {
+            "origin": "sysutils/node_exporter",
+            "version": "1.1.0"
+        }
+    },
+    "categories": [
+        "andxor",
+        "prometheus"
+    ],
+    "files": {
+        "/usr/local/etc/cron.d/zpool_exporter": "1$69125763f7513b7d96717de88c20fa70aaea078baa9be413855121375ac13a44",
+        "/usr/local/sbin/zpool_exporter": "1$ea65f60f3692b7a31779777a39273a6ae025261837d5dc5b5bab325b59c4eafe"
+    }
+}
