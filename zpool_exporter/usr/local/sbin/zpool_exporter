@@ -1,0 +1,12 @@
+#!/bin/sh
+zpool list -Hp | awk -v q='"' '{
+  param = "{pool=" q $1 q "} "
+  print "lapo_zpool_size" param $2
+  print "lapo_zpool_alloc" param $3
+  sub("%", "", $7) # some version print a trailing "%"
+  print "lapo_zpool_frag" param $7
+  sub("x", "", $9) # some version print a trailing "x"
+  print "lapo_zpool_dedup" param $9
+  print "lapo_zpool_healthy" param (($10 == "ONLINE") ? 1 : 0)
+}' > /var/tmp/node_exporter/zpool_exporter.tmp
+mv /var/tmp/node_exporter/zpool_exporter.tmp /var/tmp/node_exporter/zpool_exporter.prom
