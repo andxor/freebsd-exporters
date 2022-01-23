@@ -1,12 +1,51 @@
 #!/bin/sh
-zpool list -Hp | awk -v q='"' '{
-  param = "{pool=" q $1 q "} "
-  print "lapo_zpool_size" param $2
-  print "lapo_zpool_alloc" param $3
-  sub("%", "", $7) # some version print a trailing "%"
-  print "lapo_zpool_frag" param $7
-  sub("x", "", $9) # some version print a trailing "x"
-  print "lapo_zpool_dedup" param $9
-  print "lapo_zpool_healthy" param (($10 == "ONLINE") ? 1 : 0)
-}' > /var/tmp/node_exporter/zpool_exporter.tmp
-mv /var/tmp/node_exporter/zpool_exporter.tmp /var/tmp/node_exporter/zpool_exporter.prom
+out=/var/tmp/node_exporter/zpool_exporter
+zpool list -Hp | awk -v q='"' '
+  BEGIN {
+    print "# HELP lapo_zpool_size Size of zpool in bytes."
+    print "# TYPE lapo_zpool_size gauge"
+    print "# HELP lapo_zpool_alloc Allocated size of zpool in bytes."
+    print "# TYPE lapo_zpool_alloc gauge"
+    print "# HELP lapo_zpool_frag Percentage (0-100) of fragmentation of zpool."
+    print "# TYPE lapo_zpool_frag gauge"
+    print "# HELP lapo_zpool_dedup Deduplication factor (1.0 mean no deduplication)."
+    print "# TYPE lapo_zpool_dedup gauge"
+    print "# HELP lapo_zpool_healthy zpool health status (1=ONLINE, 0=DEGRADED or worse)."
+    print "# TYPE lapo_zpool_healthy gauge"
+  }
+  {
+    param = "{pool=" q $1 q "} "
+    print "lapo_zpool_size" param $2
+    print "lapo_zpool_alloc" param $3
+    print "lapo_zpool_frag" param $7
+    sub("x", "", $9) # some version print a trailing "x"
+    print "lapo_zpool_dedup" param $9
+    print "lapo_zpool_healthy" param (($10 == "ONLINE") ? 1 : 0)
+  }
+' > $out.tmp
+zpool status -p | awk -v q='"' '
+  BEGIN {
+    scan_nr = -9
+    print "# HELP lapo_zpool_scrub_time Unixtime of latest zpool scrub."
+    print "# TYPE lapo_zpool_scrub_time gauge"
+    print "# HELP lapo_zpool_scrub_progress Percentage (0-100) of latest zpool scrub (100 when complete)."
+    print "# TYPE lapo_zpool_scrub_progress gauge"
+  }
+  /^ *pool:/ { param = "{pool=" q $2 q "} " }
+  /^ *scan:/ {
+    if (match($0, /(Mon|Tue|Wed|Thu|Fri|Sat|Sun) [A-Z][a-z][a-z] [0-9]+ [0-9:]+ 2[0-9]+$/) > 0) {
+      d1 = substr($0, RSTART, RLENGTH)
+      "date -j -f " q "%a %b %d %T %Y" q " " q d1 q " +%s" | getline d2
+      print "lapo_zpool_scrub_time" param d2
+    }
+    if (match($0, /scan: scrub in progress/) > 0)
+      scan_nr = NR;
+    else
+      print "lapo_zpool_scrub_progress" param "100"
+  }
+  NR == scan_nr + 2 {
+    if (match($0, /[0-9.]+% done/) > 0)
+      print "lapo_zpool_scrub_progress" param substr($0, RSTART, RLENGTH-6)
+  }
+' >> $out.tmp
+mv $out.tmp $out.prom
