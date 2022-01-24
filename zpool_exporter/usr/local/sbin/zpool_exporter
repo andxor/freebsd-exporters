@@ -17,13 +17,14 @@ zpool list -Hp | awk -v q='"' '
     param = "{pool=" q $1 q "} "
     print "lapo_zpool_size" param $2
     print "lapo_zpool_alloc" param $3
+    sub("%", "", $7) # some version print a trailing "%"
     print "lapo_zpool_frag" param $7
     sub("x", "", $9) # some version print a trailing "x"
     print "lapo_zpool_dedup" param $9
     print "lapo_zpool_healthy" param (($10 == "ONLINE") ? 1 : 0)
   }
 ' > $out.tmp
-zpool status -p | awk -v q='"' '
+zpool status | awk -v q='"' '
   BEGIN {
     scan_nr = -9
     print "# HELP lapo_zpool_scrub_time Unixtime of latest zpool scrub."
