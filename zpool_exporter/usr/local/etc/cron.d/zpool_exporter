@@ -1,1 +1,1 @@
-*/1	*	*	*	*	root	/usr/local/sbin/zpool_exporter
+*/1	*	*	*	*	root	/usr/local/sbin/zpool_exporter /var/tmp/node_exporter/zpool_exporter.prom
