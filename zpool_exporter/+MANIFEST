@@ -1,14 +1,14 @@
 {
     "name": "andxor-zpool_exporter",
     "origin": "andxor/andxor-zpool_exporter",
-    "version": "1.2",
+    "version": "1.3",
     "comment": "Andxor zpool exporter",
     "maintainer": "l.luchini@andxor.it",
     "www": "https://github.com/andxor/freebsd-exporters",
     "abi": "FreeBSD:*:*",
     "arch": "freebsd:*:*",
     "prefix": "/usr/local",
-    "flatsize": 2046,
+    "flatsize": 2762,
     "licenselogic": "single",
     "licenses": [
         ""
@@ -25,7 +25,7 @@
         "prometheus"
     ],
     "files": {
-        "/usr/local/etc/cron.d/zpool_exporter": "1$69125763f7513b7d96717de88c20fa70aaea078baa9be413855121375ac13a44",
-        "/usr/local/sbin/zpool_exporter": "1$0dae46e9a15774f9bba0f784998ec59b79674818e05f94a7d806825b2127050b"
+        "/usr/local/etc/cron.d/zpool_exporter": "1$dacd6043c1292944e31a4b316091bdbaa65565ed5336f1e6d7ad22b630a941a3",
+        "/usr/local/sbin/zpool_exporter": "1$31bd94103fa6ddf615c529aa62b3976ca79fcc7f3c89efb6150a554886632a44"
     }
 }
