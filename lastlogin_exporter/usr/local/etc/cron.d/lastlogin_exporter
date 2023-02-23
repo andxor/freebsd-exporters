@@ -1,0 +1,1 @@
+*/1	*	*	*	*	root	/usr/local/sbin/lastlogin_exporter /var/tmp/node_exporter/lastlogin_exporter.prom

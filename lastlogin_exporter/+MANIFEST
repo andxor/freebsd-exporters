@@ -1,0 +1,31 @@
+{
+    "name": "andxor-lastlogin_exporter",
+    "origin": "andxor/andxor-lastlogin_exporter",
+    "version": "1.0",
+    "comment": "Andxor lastlogin exporter",
+    "maintainer": "l.luchini@andxor.it",
+    "www": "https://github.com/andxor/freebsd-exporters",
+    "abi": "FreeBSD:*:*",
+    "arch": "freebsd:*:*",
+    "prefix": "/usr/local",
+    "flatsize": 2762,
+    "licenselogic": "single",
+    "licenses": [
+        ""
+    ],
+    "desc": "Andxor lastlogin exporter",
+    "deps": {
+        "node_exporter": {
+            "origin": "sysutils/node_exporter",
+            "version": "1.1.0"
+        }
+    },
+    "categories": [
+        "andxor",
+        "prometheus"
+    ],
+    "files": {
+        "/usr/local/etc/cron.d/lastlogin_exporter": "1$dacd6043c1292944e31a4b316091bdbaa65565ed5336f1e6d7ad22b630a941a3",
+        "/usr/local/sbin/lastlogin_exporter": "1$31bd94103fa6ddf615c529aa62b3976ca79fcc7f3c89efb6150a554886632a44"
+    }
+}
