@@ -8,7 +8,7 @@
     "abi": "FreeBSD:*:*",
     "arch": "freebsd:*:*",
     "prefix": "/usr/local",
-    "flatsize": 2762,
+    "flatsize": 666,
     "licenselogic": "single",
     "licenses": [
         ""
@@ -25,7 +25,7 @@
         "prometheus"
     ],
     "files": {
-        "/usr/local/etc/cron.d/lastlogin_exporter": "1$dacd6043c1292944e31a4b316091bdbaa65565ed5336f1e6d7ad22b630a941a3",
-        "/usr/local/sbin/lastlogin_exporter": "1$31bd94103fa6ddf615c529aa62b3976ca79fcc7f3c89efb6150a554886632a44"
+        "/usr/local/etc/cron.d/lastlogin_exporter": "1$16a773a31f949b17f4225dbd88d6a36392a4ff4f1d8d01cdeba174b173955a24",
+        "/usr/local/sbin/lastlogin_exporter": "1$19d89e93db6622841c4aa0ddf151c5158c0b3dec741607b51090883a10895f54"
     }
 }
